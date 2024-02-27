@@ -4,7 +4,7 @@
 //
 //  Created by Junyeong Jo on 1/10/24.
 //
-// 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
+//
 // api key here
 import Foundation
 import AVFoundation
@@ -33,7 +33,7 @@ class TestViewModel: NSObject, ObservableObject {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     
-    private let openAI = OpenAI(apiToken: "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")
+    private let openAI = OpenAI(apiToken: "api key here")
     
     func fetchQuestion() {
         // Initialize a chat session with a system message prompting a question generation

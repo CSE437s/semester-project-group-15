@@ -9,7 +9,7 @@ import Foundation
 import OpenAI
 
 struct QuestionService {
-    static let openAI = OpenAI(apiToken: "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")
+    static let openAI = OpenAI(apiToken: "api key here")
     
     static func fetchShortDescriptionQuestion(completion: @escaping (String?) -> Void) {
         let query = ChatQuery(
