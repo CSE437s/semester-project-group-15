@@ -1,0 +1,33 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: iOS CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_15.1.app/Contents/Developer
+
+    - name: Install Dependencies
+      run: xcodebuild -resolvePackageDependencies -scheme spaiDemo2 -project spaiDemo2.xcodeproj
+
+    - name: Build
+      run: xcodebuild build -scheme spaiDemo2 -project spaiDemo2.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13,OS=17.2'
+
+    - name: Run Tests
+      run: xcodebuild test -scheme spaiDemo2 -project spaiDemo2.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 13,OS=17.2'
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        APPLE_DEVELOPER_ACCOUNT: ${{ secrets.APPLE_DEVELOPER_ACCOUNT }}
+        APPLE_DEVELOPER_PASSWORD: ${{ secrets.APPLE_DEVELOPER_PASSWORD }}
+
