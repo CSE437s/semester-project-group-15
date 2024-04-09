@@ -14,9 +14,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Set up Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_15.0.app/Contents/Developer
 
     - name: Install Dependencies
       run: xcodebuild -resolvePackageDependencies -scheme spaiDemo2 -project spaiDemo2.xcodeproj
